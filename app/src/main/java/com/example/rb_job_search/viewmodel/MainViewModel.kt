@@ -8,10 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.rb_job_search.model.Job
 import com.example.rb_job_search.repo.Repository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import retrofit2.await
-import retrofit2.awaitResponse
 
 class MainViewModel : ViewModel() {
     companion object {
@@ -19,9 +16,17 @@ class MainViewModel : ViewModel() {
     }
 
     private val _jobs = MutableLiveData<List<Job>>()
+    private val _job = MutableLiveData<Job>()
 
     val jobs: LiveData<List<Job>>
         get() = _jobs
+
+    val job: LiveData<Job>
+        get() = _job
+
+    fun setJobData(value: Job) {
+        _job.postValue(value)
+    }
 
     fun fetchAPIJobs(description: String, fullTime: Boolean? = null, location: String? = null) {
         viewModelScope.launch(Dispatchers.IO) {

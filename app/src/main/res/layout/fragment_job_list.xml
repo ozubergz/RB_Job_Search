@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.JobListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -11,10 +12,5 @@
         android:layout_height="match_parent"
         tools:listitem="@layout/job_item"/>
 
-<!--    <TextView-->
-<!--        android:id="@+id/tv_title"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:gravity="center" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

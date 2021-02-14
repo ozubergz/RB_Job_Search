@@ -1,15 +1,14 @@
 package com.example.rb_job_search.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
+import androidx.appcompat.app.AppCompatActivity
 import com.example.rb_job_search.R
+import com.example.rb_job_search.adapter.ClickListener
 import com.example.rb_job_search.databinding.ActivityMainBinding
+import com.example.rb_job_search.model.Job
 import com.example.rb_job_search.viewmodel.MainViewModel
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,17 +22,14 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.fetchAPIJobs("java")
 
-//        viewModel.jobs.observe(this, Observer {
-//            Log.d("MainActivity", it.toString())
-//        })
-
         loadFragment()
     }
 
     private fun loadFragment() {
         supportFragmentManager.beginTransaction().apply {
-            add(R.id.fragment_job_list, JobListFragment())
+            replace(R.id.fragment_container, JobListFragment())
             commit()
         }
     }
+
 }
