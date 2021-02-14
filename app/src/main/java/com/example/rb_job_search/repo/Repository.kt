@@ -6,9 +6,9 @@ import retrofit2.Response
 
 object Repository {
 
-    val apiService = RetrofitInstance.apiService
+    private val apiService = RetrofitInstance.apiService
 
-    suspend fun getJobs(description: String, fullTime: Boolean, location: String): Response<List<Job>> {
+    suspend fun getJobs(description: String, fullTime: Boolean?, location: String?): Response<List<Job>> {
         return apiService.getJobs(description, fullTime, location)
     }
 }

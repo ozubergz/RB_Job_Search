@@ -23,11 +23,11 @@ class MainViewModel : ViewModel() {
     val jobs: LiveData<List<Job>>
         get() = _jobs
 
-    fun fetchAPIJobs(description: String = "java", fullTime: Boolean = true, location: String = "sf") {
+    fun fetchAPIJobs(description: String, fullTime: Boolean? = null, location: String? = null) {
         viewModelScope.launch(Dispatchers.IO) {
             val response = Repository.getJobs(description, fullTime, location)
             if (response.isSuccessful) {
-                _jobs.value = response.body()
+                _jobs.postValue(response.body())
             } else {
                 Log.d(TAG, response.errorBody().toString())
             }

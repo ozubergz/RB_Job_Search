@@ -14,8 +14,8 @@ interface APIService {
     @GET("positions.json")
     suspend fun getJobs(
             @Query("description") description: String,
-            @Query("full_time") full_time: Boolean,
-            @Query("location") location: String
+            @Query("full_time") full_time: Boolean?,
+            @Query("location") location: String?
     ): Response<List<Job>>
 
 }

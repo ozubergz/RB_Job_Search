@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 object RetrofitInstance {
-    // https://jobs.github.com/positions.json
+
     private const val BASE_URL = "https://jobs.github.com/"
 
     private val client = HttpLoggingInterceptor()
@@ -22,7 +22,7 @@ object RetrofitInstance {
             .client(client)
             .build()
 
-    //API Service instance
+    //creating API Service singleton instance
     val apiService: APIService by lazy {
         retrofit.create(APIService::class.java)
     }
