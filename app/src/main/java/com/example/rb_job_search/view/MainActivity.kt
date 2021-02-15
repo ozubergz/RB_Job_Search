@@ -2,6 +2,7 @@ package com.example.rb_job_search.view
 
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rb_job_search.R
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         viewModel.fetchAPIJobs("java")
 
         loadFragment()
@@ -30,6 +32,19 @@ class MainActivity : AppCompatActivity() {
             replace(R.id.fragment_container, JobListFragment())
             commit()
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // remove toolbar back button
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+
+        val manager = supportFragmentManager
+        manager.beginTransaction().apply {
+            remove(JobDetailFragment())
+            commit()
+        }
+        manager.popBackStack()
+        return true
     }
 
 }

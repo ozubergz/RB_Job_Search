@@ -22,7 +22,6 @@ import java.text.FieldPosition
 import java.util.EnumSet.of
 
 class JobListFragment : Fragment(), ClickListener {
-    private val TAG = "Fragment"
 
     private lateinit var binding: FragmentJobListBinding
     private lateinit var viewModel: MainViewModel
@@ -44,18 +43,17 @@ class JobListFragment : Fragment(), ClickListener {
         })
 
         binding.rvJobList.layoutManager = LinearLayoutManager(binding.root.context)
-    }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() = JobListFragment()
     }
 
     override fun itemClick(job: Job) {
         viewModel.setJobData(job)
         parentFragmentManager.beginTransaction().apply {
             replace(R.id.fragment_container, JobDetailFragment())
+            addToBackStack(null)
             commit()
         }
     }
+
+
 }
