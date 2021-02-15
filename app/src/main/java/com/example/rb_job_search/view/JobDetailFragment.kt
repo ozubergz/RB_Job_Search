@@ -13,6 +13,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.example.rb_job_search.R
 import com.example.rb_job_search.databinding.FragmentJobDetailBinding
 import com.example.rb_job_search.viewmodel.MainViewModel
@@ -37,6 +38,13 @@ class JobDetailFragment : Fragment() {
 
         viewModel.job.observe(viewLifecycleOwner, Observer {
             binding.tvJobTitle.text = it.title
+            binding.tvCompanyName.text = it.company
+            binding.tvJobLocation.text = it.location
+            binding.tvUrlLink.text = it.companyUrl
+
+            if(it.companyLogo != null)
+                Glide.with(binding.root.context).load(it.companyLogo).into(binding.ivLogo)
+
             it.description?.let { html ->
                 binding.webView.loadData(html, "text/html", "UTF-8")
             }
