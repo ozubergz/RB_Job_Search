@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebViewClient
 import android.widget.Toolbar
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +19,6 @@ import com.example.rb_job_search.viewmodel.MainViewModel
 
 
 class JobDetailFragment : Fragment() {
-    private val TAG = "Fragment"
 
     private lateinit var binding: FragmentJobDetailBinding
     private lateinit var viewModel: MainViewModel
@@ -37,6 +37,10 @@ class JobDetailFragment : Fragment() {
 
         viewModel.job.observe(viewLifecycleOwner, Observer {
             binding.tvJobTitle.text = it.title
+            it.description?.let { html ->
+                binding.webView.loadData(html, "text/html", "UTF-8")
+            }
+
         })
 
         //reveals toolbar back button

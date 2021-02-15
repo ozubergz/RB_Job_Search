@@ -16,8 +16,6 @@ import com.example.rb_job_search.viewmodel.MainViewModel
 import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
-    
-    private val TAG = "MainActivity"
 
     private val viewModel by viewModels<MainViewModel>()
     private lateinit var binding: ActivityMainBinding
@@ -57,6 +55,7 @@ class MainActivity : AppCompatActivity() {
     private fun removeJobDetailFragment() {
         // remove toolbar back button
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
+
         val manager = supportFragmentManager
         manager.beginTransaction().apply {
             remove(JobDetailFragment())

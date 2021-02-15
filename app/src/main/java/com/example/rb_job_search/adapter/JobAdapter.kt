@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.rb_job_search.databinding.JobItemBinding
 import com.example.rb_job_search.model.Job
 
@@ -12,7 +13,13 @@ class JobAdapter(private val dataSet: List<Job>, private val listener: ClickList
     class ViewHolder(private val binding: JobItemBinding, private val listener: ClickListener):RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Job){
             binding.tvJobTitle.text = item.title
-            binding.tvJobTitle.setOnClickListener {
+            binding.tvCompanyName.text = item.company
+            binding.tvJobLocation.text = item.location
+
+            if(item.companyLogo != null)
+                Glide.with(this.itemView).load(item.companyLogo).into(binding.ivLogo)
+
+            binding.cvJobItem.setOnClickListener {
                 listener.itemClick(item)
             }
         }
