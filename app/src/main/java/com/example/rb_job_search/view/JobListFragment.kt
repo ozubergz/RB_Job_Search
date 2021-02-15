@@ -23,6 +23,8 @@ import java.util.EnumSet.of
 
 class JobListFragment : Fragment(), ClickListener {
 
+    private val TAG = "FRAGMENT"
+
     private lateinit var binding: FragmentJobListBinding
     private lateinit var viewModel: MainViewModel
 
@@ -43,7 +45,6 @@ class JobListFragment : Fragment(), ClickListener {
         })
 
         binding.rvJobList.layoutManager = LinearLayoutManager(binding.root.context)
-
     }
 
     override fun itemClick(job: Job) {
