@@ -50,11 +50,15 @@ class JobDetailFragment : Fragment() {
             }
         })
 
-        //reveals actionbar on top
-        (activity as AppCompatActivity).supportActionBar?.show()
-        //reveals back button in actionbar
-        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
+        // activity actionbar
+        (activity as AppCompatActivity).supportActionBar?.apply {
+            //show actionbar on top
+            this.show()
+            // reveals back button in actionbar
+            this.setDisplayHomeAsUpEnabled(true)
+            // remove actionbar title
+            this.setDisplayShowTitleEnabled(false)
+        }
     }
 
 }
