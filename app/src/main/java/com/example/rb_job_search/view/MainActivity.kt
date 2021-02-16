@@ -14,6 +14,7 @@ import com.example.rb_job_search.databinding.ActivityMainBinding
 import com.example.rb_job_search.model.Job
 import com.example.rb_job_search.viewmodel.MainViewModel
 import org.w3c.dom.Text
+import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,7 +27,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         loadJobListFragment()
-
         loadListeners()
     }
 
@@ -53,9 +53,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun removeJobDetailFragment() {
-        // remove toolbar back button
-        supportActionBar?.setDisplayHomeAsUpEnabled(false)
-
         val manager = supportFragmentManager
         manager.beginTransaction().apply {
             remove(JobDetailFragment())
@@ -64,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         manager.popBackStack()
     }
 
-    //back button
+    // override actionbar back button
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         removeJobDetailFragment()
         return true

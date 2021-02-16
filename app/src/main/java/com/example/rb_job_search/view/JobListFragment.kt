@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -43,6 +44,9 @@ class JobListFragment : Fragment(), ClickListener {
         })
 
         binding.rvJobList.layoutManager = LinearLayoutManager(binding.root.context)
+
+        // hide actionbar on top
+        (activity as AppCompatActivity).supportActionBar?.hide()
     }
 
     override fun itemClick(job: Job) {
@@ -53,6 +57,4 @@ class JobListFragment : Fragment(), ClickListener {
             commit()
         }
     }
-
-
 }

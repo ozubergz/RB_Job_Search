@@ -48,10 +48,11 @@ class JobDetailFragment : Fragment() {
             it.description?.let { html ->
                 binding.webView.loadData(html, "text/html", "UTF-8")
             }
-
         })
 
-        //reveals toolbar back button
+        //reveals actionbar on top
+        (activity as AppCompatActivity).supportActionBar?.show()
+        //reveals back button in actionbar
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
     }
